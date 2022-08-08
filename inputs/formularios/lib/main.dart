@@ -104,7 +104,7 @@ class CustomTextField extends StatelessWidget {
   final String label;
   final String? hint;
   final IconData? icon;
-  final String? Function(String? text)? validator;
+  final String? Function(String text)? validator;
   final void Function(String? text)? onSaved;
 
   const CustomTextField(
