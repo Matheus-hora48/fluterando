@@ -9,11 +9,29 @@ class Controladas extends StatefulWidget {
   State<Controladas> createState() => _ControladasState();
 }
 
-class _ControladasState extends State<Controladas> {
+class _ControladasState extends State<Controladas>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(),
+      body: Center(
+        child: Container(
+          height: 100,
+          width: 100,
+          color: Colors.redAccent,
+        ),
+      ),
     );
   }
 }
