@@ -6,4 +6,7 @@ class TodoModel{
 
   TodoModel({required this.userId, required this.id, required this.title, required this.completed});
 
+  static TodoModel fromJson(dynamic map){
+    return TodoModel(userId: map['userId'], id: map['id'], title: map['title'], completed: map['completed']);
+  }
 }

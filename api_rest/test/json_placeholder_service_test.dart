@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:api_rest/json_placeholder_service.dart';
+import 'package:api_rest/services/json_placeholder_service.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/native_imp.dart';
 import 'package:flutter_test/flutter_test.dart';
