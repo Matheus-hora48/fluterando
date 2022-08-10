@@ -1,10 +1,6 @@
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:provider_start/src/module/auth/models/auth_request_model.dart';
-import 'package:provider_start/src/shared/models/user_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
+import 'package:provider_start/src/module/auth/controller/auth_controller.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
@@ -14,17 +10,20 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  var authRequest = AuthRequestModel('', '');
 
-  Future<void> loginAction(BuildContext context) async {
-    try {
-      final response = await Dio().post('http://localhost:8080/auth', data: authRequest.toMap());
-      final shared = await SharedPreferences.getInstance();
-      globaUserModel = UserModel.fromMap(jsonDecode(response.data));
-      await shared.setString('UserModel', globaUserModel!.toJson());
+  @override
+  void initState() {
+    super.initState();
+    final controller = context.read<AuthController>();
+
+    controller.addListener(() {
+      
+    });
+
+    if(controller.state == AuthState.error ){
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Erro na autenticação.')));
+    } else if (controller.state == AuthState.success ) {
       Navigator.of(context).pushReplacementNamed('/home');
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Erro na autenticação')));
     }
   }
 
@@ -44,7 +43,7 @@ class _AuthPageState extends State<AuthPage> {
                 labelText: 'Email',
               ),
               onChanged: (value) {
-                authRequest = authRequest.copyWith(email: value);
+                controller.authRequest = controller.authRequest.copyWith(email: value);
               },
             ),
             const SizedBox(height: 10),
@@ -54,13 +53,13 @@ class _AuthPageState extends State<AuthPage> {
                 labelText: 'Password',
               ),
               onChanged: (value) {
-                authRequest = authRequest.copyWith(password: value);
+                controller.authRequest = controller.authRequest.copyWith(password: value);
               },
             ),
             const SizedBox(height: 13),
             ElevatedButton(
-              onPressed: () {
-                loginAction(context);
+              onPressed: controller.state == AuthState.loading ? null : () {
+                controller.loginAction();
               },
               child: const Text('Login'),
             ),
