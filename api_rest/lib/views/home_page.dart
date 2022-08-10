@@ -4,6 +4,7 @@ import 'package:api_rest/services/json_placeholder_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final controller = HomeController(JsonPlaceholderService(DioClient()));
+  final controller = Modular.get<HomeController>();
 
   @override
   void initState() {
