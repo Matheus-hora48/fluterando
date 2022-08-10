@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:provider_start/src/models/auth_request_model.dart';
-import 'package:provider_start/src/models/user_model.dart';
+import 'package:provider_start/src/module/auth/models/auth_request_model.dart';
+import 'package:provider_start/src/shared/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthPage extends StatefulWidget {

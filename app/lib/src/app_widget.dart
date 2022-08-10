@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider_start/src/auth_page.dart';
-import 'package:provider_start/src/home_page.dart';
-import 'package:provider_start/src/splash_page.dart';
+import 'package:provider_start/src/module/auth/auth_page.dart';
+import 'package:provider_start/src/module/home/home_page.dart';
+import 'package:provider_start/src/module/splash/splash_page.dart';
+
 
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key}) : super(key: key);
