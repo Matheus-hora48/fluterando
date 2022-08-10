@@ -9,4 +9,6 @@ class TodoModel{
   static TodoModel fromJson(dynamic map){
     return TodoModel(userId: map['userId'], id: map['id'], title: map['title'], completed: map['completed']);
   }
+
+  static TodoModel stub() => TodoModel(userId: 1, id: 1, title: 'teste', completed: true,);
 }

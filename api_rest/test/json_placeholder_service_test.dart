@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:api_rest/services/json_placeholder_service.dart';
+import 'package:api_rest/services/my_http_client.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/native_imp.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -10,12 +11,13 @@ class DioMock extends Mock implements DioForNative{
 
 }
 
+class IHttpClientMock extends Mock implements IHttpClient{}
+
 void main() async{
   test('deve retornar todos o todos', () async{
-  final dio = DioMock();
-  final response = Response(requestOptions: RequestOptions(path: ''), data: JsonDecoder(jsonResponse), statusCode: 200,);
-  when(() => dio.get(any())).thenAnswer((_) => response)
-  final service = JsonPlaceholderService(dio);
+  final client = IHttpClientMock();
+  when(() => client.get(url)).thenAnswer((_) async => jsonDecode(jsonResponse));
+  final service = JsonPlaceholderService(client);
   final todos = await service.getTodos();
   print(todos[0].title);
 });
