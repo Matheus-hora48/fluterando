@@ -32,7 +32,7 @@ class _AuthPageState extends State<AuthPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Auth'),
-        // actions: const [AuthButton()],
+        //actions: const [AuthButton()],
       ),
       body: Container(
         alignment: Alignment.center,
@@ -62,7 +62,7 @@ class _AuthPageState extends State<AuthPage> {
               },
             ),
             const SizedBox(height: 13),
-            // const AuthButton(),
+            //const AuthButton(),
           ],
         ),
       ),
